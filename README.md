@@ -1,2 +1,2 @@
 # allmyprojects
-in this repository it contains all my projevcts which i done in my college
+in this repository it contains all my projects which i done in my college
