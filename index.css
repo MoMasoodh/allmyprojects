@@ -1,0 +1,220 @@
+/* Import neon font (Orbitron) */
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap');
+
+/* Page setup and centering */
+html, body, #root {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  background: linear-gradient(180deg, #02020a 0%, #070611 60%);
+  font-family: 'Orbitron', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#root {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 22px;
+}
+
+/* Shell */
+.arcade-shell {
+  width: 380px;
+  max-width: 94vw;
+  background: linear-gradient(180deg, #090a12 0%, #05040a 100%);
+  border-radius: 14px;
+  padding: 18px;
+  box-shadow:
+    0 8px 40px rgba(0,0,0,0.7),
+    0 0 60px rgba(0,170,255,0.07) inset,
+    0 0 22px rgba(255,0,170,0.02) inset;
+  border: 1px solid rgba(0,170,255,0.08);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Decorative bezel/glow strip top */
+.arcade-shell::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(400px 100px at 10% 10%, rgba(0,170,255,0.06), transparent 6%),
+              radial-gradient(300px 80px at 90% 20%, rgba(255,20,150,0.03), transparent 6%);
+  mix-blend-mode: screen;
+}
+
+/* Title */
+.arcade-title {
+  text-align: center;
+  font-size: 20px;
+  color: #00eaff;
+  text-shadow: 0 0 8px rgba(0,234,255,0.25), 0 2px 2px rgba(0,0,0,0.6);
+  margin-bottom: 12px;
+  letter-spacing: 2px;
+}
+
+/* Display */
+.arcade-screen {
+  background: linear-gradient(180deg, #001124, #020618);
+  border-radius: 10px;
+  padding: 12px 14px;
+  border: 1px solid rgba(0,160,255,0.12);
+  box-shadow: inset 0 6px 18px rgba(0,0,0,0.7), inset 0 0 14px rgba(0,170,255,0.03);
+  min-height: 72px;
+  margin-bottom: 16px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* Expression and result */
+.expr {
+  color: #7fe8ff;
+  font-size: 26px;
+  text-align: right;
+  text-shadow: 0 0 8px rgba(0,234,255,0.22);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.result {
+  color: #7dffcf;
+  font-size: 13px;
+  text-align: right;
+  opacity: 0.85;
+  margin-top: 6px;
+}
+
+/* Keys grid */
+.arcade-keys {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+}
+
+/* Key base style */
+.key {
+  appearance: none;
+  border: none;
+  outline: none;
+  padding: 14px 0;
+  border-radius: 10px;
+  font-size: 18px;
+  font-weight: 700;
+  cursor: pointer;
+  user-select: none;
+  transform: translateZ(0);
+  transition: transform 0.09s ease, box-shadow 0.12s ease, background 0.12s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #bfefff;
+  letter-spacing: 1px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.6), 0 0 12px rgba(0,170,255,0.04);
+  background: linear-gradient(180deg, rgba(10,10,20,0.85), rgba(5,6,12,0.95));
+  border: 1px solid rgba(255,255,255,0.03);
+}
+
+/* Hover glow */
+.key:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 28px rgba(0,0,0,0.6), 0 0 28px rgba(0,170,255,0.18);
+}
+
+/* Pressed visual (applied for keyboard events and quick JS) */
+.key.pressed,
+.key:active {
+  transform: translateY(2px);
+  box-shadow: 0 6px 10px rgba(0,0,0,0.7), 0 0 16px rgba(0,170,255,0.12) inset;
+  transition: transform 0.05s ease;
+}
+
+/* Operators - magenta */
+.key-op {
+  color: #ffd2ff;
+  background: linear-gradient(180deg, rgba(30,6,40,0.9), rgba(20,4,30,0.95));
+  border: 1px solid rgba(255,80,200,0.12);
+  text-shadow: 0 0 8px rgba(255,80,200,0.06);
+  box-shadow: 0 8px 18px rgba(255,80,200,0.02);
+}
+.key-op:hover {
+  box-shadow: 0 14px 36px rgba(255,80,200,0.12);
+}
+
+/* Clear - red */
+.key-clear {
+  background: linear-gradient(180deg, rgba(40,0,0,0.9), rgba(20,0,0,0.95));
+  color: #ffb3b3;
+  border: 1px solid rgba(255,70,70,0.14);
+  text-shadow: 0 0 8px rgba(255,80,80,0.08);
+}
+.key-clear:hover {
+  box-shadow: 0 14px 36px rgba(255,80,80,0.14);
+}
+
+/* Equals - neon green with pulsing animation */
+.key-eq {
+  background: linear-gradient(180deg, rgba(0,30,20,0.95), rgba(0,16,10,0.95));
+  color: #b8ffe6;
+  border: 1px solid rgba(0,255,160,0.18);
+  box-shadow: 0 10px 30px rgba(0,255,160,0.06), 0 0 12px rgba(0,255,160,0.06);
+  text-shadow: 0 0 8px rgba(0,255,160,0.08);
+  animation: eqPulse 2.4s infinite ease-in-out;
+}
+@keyframes eqPulse {
+  0% { box-shadow: 0 10px 30px rgba(0,255,160,0.06); transform: translateY(0); }
+  50% { box-shadow: 0 24px 60px rgba(0,255,160,0.14); transform: translateY(-3px); }
+  100% { box-shadow: 0 10px 30px rgba(0,255,160,0.06); transform: translateY(0); }
+}
+
+/* Neon outline for special buttons (accent) */
+.key-op::before,
+.key-clear::before,
+.key-eq::before {
+  content: "";
+  position: absolute;
+  width: calc(100% + 8px);
+  height: calc(100% + 8px);
+  border-radius: 12px;
+  z-index: -1;
+  filter: blur(12px);
+  opacity: 0.18;
+}
+.key-op::before { background: radial-gradient(circle at 50% 50%, rgba(255,80,200,0.35), transparent 35%); }
+.key-clear::before { background: radial-gradient(circle at 50% 50%, rgba(255,80,80,0.35), transparent 35%); }
+.key-eq::before { background: radial-gradient(circle at 50% 50%, rgba(0,255,160,0.35), transparent 35%); }
+
+/* make keys touch-friendly on mobile */
+@media (max-width: 520px) {
+  .arcade-shell { width: 94vw; padding: 14px; border-radius: 12px; }
+  .key { padding: 16px 0; font-size: 20px; border-radius: 12px; }
+  .arcade-title { font-size: 18px; }
+  .expr { font-size: 22px; }
+  .result { font-size: 12px; }
+  .arcade-keys { gap: 10px; }
+}
+
+/* Footer text */
+.arcade-footer {
+  margin-top: 14px;
+  text-align: center;
+  font-size: 12px;
+  color: rgba(120, 210, 255, 0.75);
+  opacity: 0.9;
+}
+
+/* Small accessibility focus ring */
+.key:focus {
+  box-shadow: 0 0 0 4px rgba(0,170,255,0.08), 0 10px 20px rgba(0,0,0,0.6);
+  outline: none;
+}
+
+/* Make the pressed class (JS-triggered) have a quick inner glow */
+.key.pressed {
+  transform: translateY(2px);
+  box-shadow: 0 6px 12px rgba(0,0,0,0.7), 0 0 22px rgba(0,170,255,0.12) inset;
+}
